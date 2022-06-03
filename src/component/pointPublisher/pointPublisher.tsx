@@ -8,8 +8,8 @@ export default function PointPublisher(){
     }))
 
     const [msg, setMsg] = useState({
-        x : 0.0,
-        y : 0.0,
+        x : 250,
+        y : 250,
         z : 0.0
     })
 
@@ -27,12 +27,9 @@ export default function PointPublisher(){
         ros.current.on('close', function() {
             console.log('Connection to websocket server closed.');
         });
-
-        // Publishing a Topic
-        // ------------------
     }, [])
 
-    function publishTwist(){
+    function publishPoint(){
         var cmdVel = new ROSLIB.Topic({
             ros : ros.current,
             name : '/golf_point',
@@ -44,9 +41,8 @@ export default function PointPublisher(){
     }
     return(
         <div>
-            <b>RosView</b>
+            <b>Point Publisher</b>
         <br/>
-        Linear<br/>
         X <input value={msg.x} onChange={(e)=> {
         setMsg(prevState => {return {...prevState, x: +e.target.value}})
         }}/>
@@ -57,7 +53,7 @@ export default function PointPublisher(){
             setMsg(prevState => {return {...prevState, z: +e.target.value}})
         }}/>
 
-    <button onClick={publishTwist}>Publish</button>
+    <button onClick={publishPoint}>Publish</button>
         </div>
 )
 }

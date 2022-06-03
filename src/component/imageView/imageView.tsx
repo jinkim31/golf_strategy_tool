@@ -6,6 +6,8 @@ export default function ImageView(){
 
     const [img, setImg] = useState()
 
+    const imgElement = useRef<HTMLImageElement>()
+
     const ros = useRef(new ROSLIB.Ros({
         url : 'ws://localhost:9090'
     }))
@@ -18,11 +20,21 @@ export default function ImageView(){
 
     useEffect(()=>{
         listener.current.subscribe(function(message) {
-            console.log('Received message on ' + listener.current.name)
             // @ts-ignore
             setImg(rgb8ImageToBase64Jpeg(message))
         })
     }, [])
+
+    function publishPoint(point:any){
+        var cmdVel = new ROSLIB.Topic({
+            ros : ros.current,
+            name : '/golf_point',
+            messageType : 'geometry_msgs/Point'
+        });
+
+        var twist = new ROSLIB.Message(point);
+        cmdVel.publish(twist);
+    }
 
     function rgb8ImageToBase64Jpeg (msg:any) {
         var raw = atob(msg.data)
@@ -43,12 +55,22 @@ export default function ImageView(){
             width: msg.width,
             height: msg.height
         }
-        return jpeg.encode(rawImageData, 50).data.toString('base64')
+        return jpeg.encode(rawImageData, 100).data.toString('base64')
+    }
+
+    function onImgClick(e: React.MouseEvent<HTMLImageElement>){
+        var x = e.clientX - imgElement.current.getBoundingClientRect().x
+        var y = 500-(e.clientY - imgElement.current.getBoundingClientRect().y)
+        publishPoint({
+            x:x,
+            y:y,
+            z:0.0}
+        )
     }
 
     return(
         <div>
-            <img src={"data:image/jpeg;base64," + img}/>
+            <img ref={imgElement} src={"data:image/jpeg;base64," + img} onClick={(e)=>{onImgClick(e)}}/>
         </div>
     )
 }

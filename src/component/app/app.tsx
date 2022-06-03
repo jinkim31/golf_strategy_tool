@@ -10,10 +10,6 @@ import ClubView from "../clubView/clubView";
 import PointPublisher from "../pointPublisher/pointPublisher";
 import ImageView from "../imageView/imageView";
 
-const store = new Store();
-store.set('unicorn', '🦄');
-console.log(store.get('unicorn'));
-
 interface Props{
 
 }

@@ -9,6 +9,8 @@ import TopicView from "../topicView/topicView";
 import ClubView from "../clubView/clubView";
 import PointPublisher from "../pointPublisher/pointPublisher";
 import ImageView from "../imageView/imageView";
+import AdviceView from "../adviceView/adviceView";
+import DebugView from "../debugView/debugView";
 
 interface Props{
 
@@ -28,44 +30,6 @@ export default class App extends Component {
             splitterExtra: 8,
             tabSetTabStripHeight: 24
         },
-        borders: [
-            {
-                type: "border",
-                location: "bottom",
-                selected: 0,
-                children: [
-                    {
-                        type: "tab",
-                        name: "point pub",
-                        component: "PointPublisher",
-                    }
-                ]
-            },
-            {
-                type: "border",
-                location: "left",
-                selected: 0,
-                children: [
-                    {
-                        type: "tab",
-                        name: "topic view",
-                        component: "TopicView",
-                    }
-                ]
-            },
-            {
-                type: "border",
-                location: "right",
-                selected: 0,
-                children: [
-                    {
-                        type: "tab",
-                        name: "club view",
-                        component: "ClubView",
-                    }
-                ]
-            },
-        ],
         layout: {
             type: "row",
             weight: 100,
@@ -77,8 +41,13 @@ export default class App extends Component {
                     children: [
                         {
                             type: "tab",
-                            name: "image view",
-                            component: "ImageView",
+                            name: "Advice",
+                            component: "AdviceView",
+                        },
+                        {
+                            type: "tab",
+                            name: "Debug",
+                            component: "DebugView",
                         }
                     ]
                 },
@@ -110,6 +79,12 @@ export default class App extends Component {
         }
         if (component === "ImageView") {
             return (<ImageView/>);
+        }
+        if (component === "AdviceView") {
+            return (<AdviceView/>);
+        }
+        if (component === "DebugView") {
+            return (<DebugView/>);
         }
     }
 

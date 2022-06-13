@@ -1,0 +1,75 @@
+.advice-view{
+  background: white;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+
+  .image-view{
+    width: 60%;
+    height: 100%;
+
+    .image{
+      padding: 48px;
+      box-sizing: border-box;
+      width: 99%;
+      height: 99%;
+      object-fit: contain;
+    }
+  }
+
+  .list-view{
+    width: 40%;
+    min-width: 400px;
+    height: 100%;
+
+    padding: 128px 128px 128px 0px;
+    box-sizing: border-box;
+
+    overflow: scroll;
+  }
+}
+
+.stroke-view{
+  width: 100%;
+  height: 100px;
+  background: #f6f6f6;
+  border-radius: 15px;
+  padding: 16px;
+  box-sizing: border-box;
+  font-size: 24px;
+  font-weight: 200;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-column-gap: 24px;
+
+  .club-label{
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 4px;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+  }
+
+  .icons{
+    text-align: center;
+    color: gray;
+  }
+}
+
+.stroke-list-arrow{
+  width: 100%;
+  height: 32px;
+  text-align: center;
+  font-size: 24px;
+  padding: 4px;
+  box-sizing: border-box;
+
+  .icon{
+    color:gray;
+  }
+}

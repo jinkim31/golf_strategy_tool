@@ -1,7 +1,9 @@
-// Renderer Process
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import App from './component/app/app';
 import {Provider} from "react-redux";
+import {store} from "./store/store";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const rootNode = document.getElementById('root');
+
+ReactDOM.createRoot(rootNode).render(<Provider store={store}><App /></Provider>);
